@@ -39,7 +39,7 @@ class CustomHandler(http.server.BaseHTTPRequestHandler):
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(projects).encode())
-
+        
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
@@ -131,6 +131,42 @@ class CustomHandler(http.server.BaseHTTPRequestHandler):
             for project in projects:
                 if str(project.get('id')) == project_id:
                     projects.remove(project)
+                    save_data()
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(project).encode())
+                    return
+
+        self.send_response(404)
+        self.send_header('Content-type', 'text/plain')
+        self.end_headers()
+        self.wfile.write('Not Found'.encode())
+    
+    def do_PATCH(self):
+        content_length = int(self.headers['Content-Length'])
+        patch_data = self.rfile.read(content_length)
+        parsed_url = urlparse(self.path)
+
+        if parsed_url.path.startswith('/users/'):
+            user_id = parsed_url.path.split('/')[-1]
+            for user in users:
+                if str(user.get('id')) == user_id:
+                    patch_updates = json.loads(patch_data)
+                    user.update(patch_updates)
+                    save_data()
+                    self.send_response(200)
+                    self.send_header('Content-type', 'application/json')
+                    self.end_headers()
+                    self.wfile.write(json.dumps(user).encode())
+                    return
+
+        elif parsed_url.path.startswith('/projects/'):
+            project_id = parsed_url.path.split('/')[-1]
+            for project in projects:
+                if str(project.get('id')) == project_id:
+                    patch_updates = json.loads(patch_data)
+                    project.update(patch_updates)
                     save_data()
                     self.send_response(200)
                     self.send_header('Content-type', 'application/json')

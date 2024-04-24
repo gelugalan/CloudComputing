@@ -1,0 +1,12 @@
+runtime: python39
+
+
+
+handlers:
+- url: /
+  static_files: main.html
+  upload: main.html
+
+- url: /(.*)
+  static_files: \1
+  upload: (.*)

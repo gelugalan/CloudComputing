@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Main Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+    
+    <div class="content">
+
+        <div id="menu">
+            <div id="buttons">
+                
+                <div id="logout">
+                    <button onclick="logout()">Logout</button>
+                </div>
+                <div id="login">
+                    <button onclick="toggleLoginForm()">Login</button>
+                    
+                </div>
+                <div id="create">
+                    <button onclick="toggleLocationForm()">Create</button>
+                    
+                </div>
+                <div id="showlocations">
+                    <button onclick="showMyLocations()">Show My Locations</button>
+                </div>
+                <div id="content_container" style="display: none;">
+                    <div id="form_container">
+                    <div id="form_content_container">
+                        <div id="form_content_inner_container">
+                            <input type="text" id="full_name" placeholder="Full name">
+                            <input type="email" id="email" placeholder="Email">
+                            <input type="password" id="password" placeholder="New Password">
+
+                            
+                            <div id="button_container">
+                                <button onclick="login()">Login</button>
+                                <button onclick="register()">Register</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>    
+                <div id="formmm">
+
+                    <div id="location-form" style="display: none;">
+                        <input type="text" id="location-name" placeholder="Numele locației">
+                        <div id="map" style="width: 400px; height: 300px;"></div>
+                        <input type="text" id="location-lat" placeholder="Latitudine">
+                        <input type="text" id="location-lng" placeholder="Longitudine">
+                        <input type="text" id="location-description" placeholder="Descriere">
+                        <div id="submit">
+
+                            <button onclick="submitLocation()">Submit</button>
+                        </div>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    
+        <!-- Conținutul principal al paginii -->
+        <div id="container">
+            <!-- Informații despre produs -->
+            <h1>Numele Proiectului</h1>
+            <div id="product-info-container">
+                <!-- Aici vor fi afișate informațiile și hărțile despre produse -->
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+    <script  defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6LSxRjlfzfhwp_6gGW3e3Y-pQMJGpA-g&callback=initMap">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="main.js"></script>
+    
+
+</html>
